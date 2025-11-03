@@ -142,8 +142,8 @@ if (!(project.hasProperty('env') && project.getProperty('env') == 'dev')) {
 // https://docs.groovy-lang.org/latest/html/api/groovy/sql/Sql.html
 import groovy.sql.Sql
 
-project.ext.mysqlUser='root'
-project.ext.mysqlPassword='mysql'
+project.ext.mysqlUser='fineract'
+project.ext.mysqlPassword='Mynameis1*'
 project.ext.pgUser='root'
 project.ext.pgPassword='postgres'
 
@@ -164,7 +164,8 @@ configurations.driver.each {File file ->
 tasks.register('createDB') {
     description = "Creates the MariaDB Database. Needs database name to be passed (like: -PdbName=someDBname)"
     doLast {
-        def sql = Sql.newInstance('jdbc:mariadb://localhost:3306/', mysqlUser, mysqlPassword, 'org.mariadb.jdbc.Driver')
+         def sql = Sql.newInstance('jdbc:mariadb://localhost:3306/', mysqlUser, mysqlPassword, 'org.mariadb.jdbc.Driver')
+       //    def sql = Sql.newInstance('jdbc:mysql://localhost:3306/' , mysqlUser, mysqlPassword, 'com.mysql.cj.jdbc.Driver')
         sql.execute('CREATE DATABASE ' + "`$dbName` CHARACTER SET utf8mb4")
     }
 }
